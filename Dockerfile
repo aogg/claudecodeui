@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:24
 
 WORKDIR /app
 
@@ -18,8 +18,27 @@ COPY . .
 # Build the application
 RUN npm run build
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        curl \
+    && npm install -g \
+        @anthropic-ai/claude-code \
+        @google/gemini-cli \
+        @openai/codex \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.npm
+
+ENV WORKSPACES_ROOT=/
+
+ENV ANTHROPIC_BASE_URL ""
+ENV ANTHROPIC_AUTH_TOKEN ""
+
+ENV GOOGLE_GEMINI_BASE_URL ""
+ENV GEMINI_API_KEY ""
+
 # Expose port
-EXPOSE 3000
+EXPOSE 3001
 
 # Start the server
 CMD ["npm", "run", "server"]
