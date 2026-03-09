@@ -1,9 +1,11 @@
-FROM node:24
+FROM node:24-slim
 
 WORKDIR /app
 
 # Install build dependencies for native modules
-RUN apk add --no-cache python3 make g++ git
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 make g++ git \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy package files and scripts needed for postinstall
 COPY package*.json ./
