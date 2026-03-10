@@ -1,0 +1,56 @@
+---
+description:
+alwaysApply: true
+enabled: true
+updatedAt: 2026-01-28T03:05:50.766Z
+provider:
+---
+
+
+# 公共规则
+## 注意事项
+- 找代码不要找$env:USERPROFILE和%USERPROFILE%里的东西
+- 当前编辑器是windows环境
+- 要访问中国里国外网络要注意配置代理http://localhost_alpine:8899
+- 要访问github.com要注意配置代理https://ghproxy.com/https://github.com/
+- **绝对禁止**用cmd /c执行命令，和powershell.exe -Command
+
+# 对话中计划
+- 作者官网: https://github.com/aogg
+- 给的计划必须举例说明
+
+
+## 文件组织
+- 每个功能模块保持单一职责
+- main入口文件, 其他文件放src去
+- 配置文件放到/src/configs文件夹
+- 代码生成文件放/runtimes
+- 每次新增代码都要判断哪些代码是可写成helper类的，哪些不行
+
+### logic层
+- 逻辑代码放/src/logic文件夹，文件名后缀要logic
+- 逻辑代码要写成类，类名后缀要logic
+- logic层的作用是处理业务逻辑，封装度低的写到这块
+
+### libs层
+- 和logic层一样，libs层也是处理业务逻辑，封装度高一些的写到这块
+- libs层的代码要写成类，类名后缀要lib
+- 放到/src/libs文件夹
+
+
+### 测试代码
+- 测试文件放/src/tests，测试代码需要编译生成的文件放/runtime/tests文件夹里
+- 要简化单个测试方法，做到易懂，单个测试方法不能超过20行
+- 测试代码分为准备和执行两个部分，准备部分要另起一个文件，执行部分只通过单一方法调用准备部分
+
+## 响应语言+
+- 所有回复和注释使用简体中文
+- 代码注释使用中文
+- 用户界面文本使用中文
+
+## 代码审查要点
+- 检查是否有未使用的参数或变量
+- 确保所有配置项都有合理的默认值
+- 验证通配符匹配逻辑的正确性
+- 确保高亮效果明显可见
+

@@ -99,7 +99,7 @@ temp/
 .netlify
 
 # AI specific
-.claude/
+#.claude/
 .cursor/
 .roo/
 .taskmaster/
