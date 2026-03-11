@@ -1,4 +1,4 @@
-FROM node:24-slim
+FROM node:22-slim
 
 WORKDIR /app
 
@@ -11,8 +11,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY package*.json ./
 COPY scripts ./scripts
 
-# Install dependencies
-RUN npm ci --production=false
+# Install dependencies and rebuild native modules for the container runtime
+RUN npm ci --production=false \
+    && npm rebuild node-pty --build-from-source
 
 # Copy source code
 COPY . .
