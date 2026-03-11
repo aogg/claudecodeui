@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install build dependencies for native modules
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 make g++ git \
+    python3 make g++ git procps \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy package files and scripts needed for postinstall
